@@ -1,17 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
-  initPageLoadAnimations();
-  initHeaderScroll();
-  initMobileNav();
-  initScrollReveal();
-  initTestimonials();
-  initActiveNavHighlighting();
-  initContactForm();
-  initSmoothScroll();
-  initServicesAccordion();
-  initFloatingActions();
-  initQuoteModal();
-  initChatWidget();
-  initNavigatorTabs();
+  const safeInit = (name, fn) => {
+    try {
+      fn();
+    } catch (e) {
+      console.error(`Error during ${name} initialization:`, e);
+    }
+  };
+
+  safeInit('PageLoadAnimations', initPageLoadAnimations);
+  safeInit('HeaderScroll', initHeaderScroll);
+  safeInit('MobileNav', initMobileNav);
+  safeInit('ScrollReveal', initScrollReveal);
+  safeInit('Testimonials', initTestimonials);
+  safeInit('ActiveNavHighlighting', initActiveNavHighlighting);
+  safeInit('ContactForm', initContactForm);
+  safeInit('SmoothScroll', initSmoothScroll);
+  safeInit('ServicesAccordion', initServicesAccordion);
+  safeInit('FloatingActions', initFloatingActions);
+  safeInit('QuoteModal', initQuoteModal);
+  safeInit('ChatWidget', initChatWidget);
+  safeInit('NavigatorTabs', initNavigatorTabs);
 });
 
 /* ==========================================================================
