@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFloatingActions();
   initQuoteModal();
   initChatWidget();
+  initNavigatorTabs();
 });
 
 /* ==========================================================================
@@ -557,5 +558,43 @@ function initChatWidget() {
     const text = msgInput.value;
     msgInput.value = '';
     handleUserMessage(text);
+  });
+}
+
+/* ==========================================================================
+   Financial Navigator Tabs Logic (New)
+   ========================================================================== */
+function initNavigatorTabs() {
+  const tabButtons = document.querySelectorAll('.navigator-tab-btn');
+  const tabPanels = document.querySelectorAll('.navigator-panel');
+  
+  if (tabButtons.length === 0) return;
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Deactivate all buttons
+      tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      
+      // Activate clicked button
+      button.classList.add('active');
+      button.setAttribute('aria-selected', 'true');
+      
+      // Hide all panels
+      tabPanels.forEach(panel => {
+        panel.classList.remove('active');
+        panel.style.display = 'none';
+      });
+      
+      // Show selected panel
+      const targetPanelId = button.getAttribute('aria-controls');
+      const targetPanel = document.getElementById(targetPanelId);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+        targetPanel.style.display = 'block';
+      }
+    });
   });
 }
