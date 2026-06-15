@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SR Tax Consulting — Tax and financial advisory services in Bengaluru, Mumbai, and Pune. Providing taxation, corporate compliance, audit support, and financial consulting.">
-  <title>SR Tax Consulting | Tax & Financial Advisory</title>
+  <meta name="description" content="SR Tax Consulting — Chartered Accountants in Kolkata. ITR filing, GST registration & returns, company incorporation, tax audit, and business compliance services for individuals, startups, and SMEs.">
+  <title>SR Tax Consulting | Chartered Accountants in Kolkata — ITR, GST, Company Registration</title>
   
   <!-- Google Fonts - Cormorant Garamond for Serifs, Inter for Sans-Serif -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,10 +12,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=10">
   
   <!-- JavaScript -->
-  <script src="script.js?v=5" defer></script>
+  <script src="script.js?v=10" defer></script>
 </head>
 <body>
 
@@ -25,8 +25,11 @@
   <header class="header">
     <div class="container">
       <a href="#" class="logo" aria-label="SR Tax Consulting Home">
-        <span class="logo-main">SR Tax Consulting</span>
-        <span class="logo-sub">Tax & Financial Advisory</span>
+        <span class="logo-mark">SR</span>
+        <div class="logo-text">
+          <span class="logo-main">SR Tax Consulting</span>
+          <span class="logo-sub">Chartered Accountants</span>
+        </div>
       </a>
       
       <nav class="nav" aria-label="Main Navigation">
@@ -38,21 +41,44 @@
           <li><a href="#insights" class="nav-link">Insights</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
-        <button class="btn btn-secondary open-quote-btn">Get a Quote</button>
+        <div class="nav-actions">
+          <a href="tel:+919876543210" class="nav-call-btn" aria-label="Call office">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="nav-call-icon">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span class="nav-call-text">Call Us</span>
+          </a>
+          <button class="nav-cta-btn open-quote-btn">
+            Free Consultation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-cta-arrow">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
       </nav>
       
-      <!-- Mobile hamburger toggle -->
-      <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <!-- Mobile Header Actions (Call & Hamburger) -->
+      <div class="mobile-header-actions">
+        <a href="tel:+919876543210" class="mobile-header-call" aria-label="Call office">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mobile-header-call-icon">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- Mobile navigation drawer -->
   <div class="mobile-nav-overlay" aria-hidden="true"></div>
   <div class="mobile-nav" id="mobile-menu">
+    <div class="mobile-nav-header">
+      <span class="mobile-nav-brand">SR Tax Consulting</span>
+    </div>
     <div class="mobile-menu-list">
       <a href="#about" class="mobile-menu-link">About</a>
       <a href="#services" class="mobile-menu-link">Services</a>
@@ -62,8 +88,13 @@
       <a href="#contact" class="mobile-menu-link">Contact</a>
     </div>
     <div class="mobile-nav-footer">
-      <p>Have an Enquiry?</p>
-      <button class="btn btn-primary open-quote-btn" style="width: 100%;">Get a Quote</button>
+      <a href="tel:+919876543210" class="btn btn-secondary mobile-call-btn" style="width: 100%; justify-content: center; align-items: center; display: inline-flex; gap: 0.5rem;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        Call Us
+      </a>
+      <button class="btn btn-primary open-quote-btn" style="width: 100%;">Free Consultation</button>
     </div>
   </div>
 
@@ -72,17 +103,25 @@
        ========================================================================== -->
   <section class="hero" id="home">
     <div class="container">
-      <div class="hero-content">
-        <span class="label-caps hero-fade-in load-fade">Chartered Accountant — Established 2009</span>
-        <h1 class="hero-headline hero-fade-in load-fade">
-          Numbers that tell the <span class="accent-word">truth</span>.<br>Advice that holds up.
-        </h1>
-        <p class="hero-subtext hero-fade-in load-fade">
-          We help individuals, businesses, and institutions manage their finances with precision, foresight, and complete regulatory clarity.
-        </p>
-        <div class="hero-ctas hero-fade-in load-fade">
-          <button class="btn btn-primary open-quote-btn">Get a Quote</button>
-          <a href="#services" class="btn btn-secondary">See Our Services</a>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="label-caps hero-fade-in load-fade">Chartered Accountants — Kolkata | ICAI Reg. No. 123456W</span>
+          <h1 class="hero-headline hero-fade-in load-fade">
+            Your tax. Your <span class="accent-word">compliance</span>.<br>Handled right.
+          </h1>
+          <p class="hero-subtext hero-fade-in load-fade">
+            We help salaried individuals, business owners, and growing companies in Kolkata file taxes, stay compliant, and structure their finances — so they never have to worry about missed deadlines or unexpected notices.
+          </p>
+          <div class="hero-ctas hero-fade-in load-fade">
+            <button class="btn btn-primary open-quote-btn">Get a Free Consultation</button>
+            <a href="#services" class="btn btn-secondary">See Our Services</a>
+          </div>
+        </div>
+        
+        <div class="hero-image-wrapper hero-fade-in load-fade">
+          <div class="hero-image-container">
+            <img src="ca_portrait.png" alt="Suvendu Mondal, Chief Financial Navigator" class="hero-image">
+          </div>
         </div>
       </div>
     </div>
@@ -94,23 +133,23 @@
   <section class="trust-bar">
     <div class="container">
       <div class="trust-bar-content">
-        <span class="trust-label">A quietly confident line of social proof.</span>
+        <span class="trust-label">Trusted by businesses and individuals across Kolkata since 2009.</span>
         <div class="trust-stats">
           <div class="stat-item">
             <span class="stat-number">340+</span>
-            <span class="stat-name">Clients Served</span>
+            <span class="stat-name">Active Clients</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">15+</span>
-            <span class="stat-name">Years of Practice</span>
+            <span class="stat-name">Years in Practice</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">12</span>
-            <span class="stat-name">Industries Covered</span>
+            <span class="stat-name">Industries Served</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number">100%</span>
-            <span class="stat-name">Compliance Record</span>
+            <span class="stat-number">Zero</span>
+            <span class="stat-name">Penalties on Our Watch</span>
           </div>
         </div>
       </div>
@@ -123,25 +162,25 @@
   <section class="section-padding reveal" id="about">
     <div class="container">
       <span class="label-caps">About the Firm</span>
-      <h2 class="section-title">Practice built on rigor. Relationships built on trust.</h2>
+      <h2 class="section-title">We handle the compliance. You focus on the business.</h2>
       
       <div class="about-grid">
         <div class="about-body">
           <p>
-            SR Tax Consulting was founded in Bengaluru in 2009 with a singular focus: provide counsel that is honest, thorough, and built to last. We are not generalists who happen to know tax law. We are specialists who understand that behind every balance sheet is a decision someone is trying to make.
+            SR Tax Consulting was established in Kolkata in 2009 with a clear purpose: give business owners and professionals one reliable place to handle every tax filing, every registration, and every compliance requirement — without missed deadlines or unpleasant surprises.
           </p>
           <p>
-            Our team of qualified Chartered Accountants works across audit, taxation, corporate compliance, and advisory — with the kind of depth that only comes from years of focused practice.
+            Our team of qualified Chartered Accountants manages ITR filing, GST returns, company incorporations, statutory audits, and ongoing compliance for over 340 clients — from salaried individuals to manufacturing firms and technology startups across Kolkata and West Bengal.
           </p>
           <p>
-            We do not chase volume. We maintain a deliberate client roster because we believe the quality of our attention is the most valuable thing we offer.
+            Every client works directly with a qualified CA. We do not delegate your file to juniors. When you call, the person who answers knows your business.
           </p>
         </div>
         
         <div class="about-stats-column">
           <div class="about-stat-row">
             <span class="about-stat-value">2009</span>
-            <span class="about-stat-label">Year of Establishment</span>
+            <span class="about-stat-label">Established in Kolkata</span>
           </div>
           <div class="about-stat-row">
             <span class="about-stat-value">8</span>
@@ -149,11 +188,11 @@
           </div>
           <div class="about-stat-row">
             <span class="about-stat-value">340+</span>
-            <span class="about-stat-label">Active Client Engagements</span>
+            <span class="about-stat-label">Active Clients Managed</span>
           </div>
           <div class="about-stat-row">
-            <span class="about-stat-value">4 Cities</span>
-            <span class="about-stat-label">Operational Footprint</span>
+            <span class="about-stat-value">24hr</span>
+            <span class="about-stat-label">Response Guarantee</span>
           </div>
         </div>
       </div>
@@ -296,21 +335,27 @@
               <p class="panel-desc">Suvendu regularly contributes research papers and lectures at national institutions on standardizing modern corporate taxation workflows.</p>
               <div class="publications-list">
                 <div class="pub-item">
-                  <span class="pub-icon">📖</span>
+                  <svg class="pub-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                  </svg>
                   <div class="pub-info">
                     <h6>"Modern Corporate Taxation & Intelligence" (2025 Edition)</h6>
                     <p>A comprehensive guidebook on data-driven tax restructuring for mid-market businesses.</p>
                   </div>
                 </div>
                 <div class="pub-item">
-                  <span class="pub-icon">📄</span>
+                  <svg class="pub-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+                  </svg>
                   <div class="pub-info">
                     <h6>"Navigating GST Reconciliations with Algorithmic Auditing"</h6>
                     <p>Research paper presented at the National ICAI Tax Symposium on minimizing input tax credit leakage.</p>
                   </div>
                 </div>
                 <div class="pub-item">
-                  <span class="pub-icon">🎤</span>
+                  <svg class="pub-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
+                  </svg>
                   <div class="pub-info">
                     <h6>Keynote Speaker — Corporate Compliance & Capital Structures</h6>
                     <p>Guest lecturer at top regional business management schools and chambers of commerce.</p>
@@ -340,9 +385,9 @@
         <div class="service-card">
           <div class="service-card-top">
             <span class="service-number">01 / taxation</span>
-            <h3 class="service-title">Direct & Indirect Taxation</h3>
+            <h3 class="service-title">Income Tax & GST Filing</h3>
             <p class="service-desc">
-              ITR filing, advance tax planning, GST registration and returns, TDS compliance, and representation before tax authorities. We handle complexity so your business does not have to absorb it.
+              ITR filing for salaried professionals and businesses. GST registration, monthly returns, and TDS compliance. We file accurately, on time, and represent you if the department sends a notice.
             </p>
           </div>
           <span class="service-card-underline"></span>
@@ -352,9 +397,9 @@
         <div class="service-card">
           <div class="service-card-top">
             <span class="service-number">02 / audit</span>
-            <h3 class="service-title">Audit & Assurance</h3>
+            <h3 class="service-title">Statutory & Internal Audits</h3>
             <p class="service-desc">
-              Statutory audits, internal audits, concurrent audits, and stock audits conducted with methodical thoroughness. Our reports are written to be read and acted on.
+              Complete audit services: statutory audits, tax audits, internal control reviews, and stock verification. Our audit reports are written to be clear, actionable, and compliant with every ICAI standard.
             </p>
           </div>
           <span class="service-card-underline"></span>
@@ -364,9 +409,9 @@
         <div class="service-card">
           <div class="service-card-top">
             <span class="service-number">03 / compliance</span>
-            <h3 class="service-title">Corporate Compliance & ROC Filing</h3>
+            <h3 class="service-title">Company Registration & ROC Filing</h3>
             <p class="service-desc">
-              Company incorporations, annual filings, board resolutions, MCA compliance, and secretarial support under the Companies Act, 2013. Deadlines are met without reminders.
+              Private limited company incorporation, LLP registration, annual ROC filings, board resolutions, and MCA compliance. We handle the paperwork from day one so your company stays in good standing.
             </p>
           </div>
           <span class="service-card-underline"></span>
@@ -376,9 +421,9 @@
         <div class="service-card">
           <div class="service-card-top">
             <span class="service-number">04 / advisory</span>
-            <h3 class="service-title">Financial Advisory & CFO Services</h3>
+            <h3 class="service-title">CFO Services & Financial Planning</h3>
             <p class="service-desc">
-              Fractional CFO support for growing businesses — including financial modelling, MIS reporting, cash flow planning, and investor-ready financials.
+              Part-time CFO support for growing businesses. We prepare MIS reports, manage cash flow, build investor-ready financial models, and keep your finance function running without a full-time hire.
             </p>
           </div>
           <span class="service-card-underline"></span>
@@ -388,9 +433,9 @@
         <div class="service-card">
           <div class="service-card-top">
             <span class="service-number">05 / setup</span>
-            <h3 class="service-title">Business Setup & Structuring</h3>
+            <h3 class="service-title">Business Registration & Structuring</h3>
             <p class="service-desc">
-              Entity selection, LLP formation, MSME registration, startup recognition, and cross-border structuring advice. We help you start right.
+              Starting a business in Kolkata? We handle MSME registration, startup recognition, entity selection (Pvt Ltd vs LLP vs OPC), and all government filings to get you operational in under 10 working days.
             </p>
           </div>
           <span class="service-card-underline"></span>
@@ -402,7 +447,7 @@
             <span class="service-number">06 / bookkeeping</span>
             <h3 class="service-title">Bookkeeping & Accounting</h3>
             <p class="service-desc">
-              Monthly, quarterly, and annual bookkeeping managed remotely or on-site. Tally, QuickBooks, Zoho Books — we work in your environment.
+              Monthly and quarterly bookkeeping managed remotely or on-site. We work with Tally, QuickBooks, and Zoho Books — so your books are always current, reconciled, and ready for any audit.
             </p>
           </div>
           <span class="service-card-underline"></span>
@@ -676,6 +721,7 @@
           <span class="compliance-title">Legal Court Matter</span>
         </div>
       </div>
+      <button class="compliance-toggle-btn" aria-label="Toggle compliance services visibility">Show All 23 Services ↓</button>
     </div>
   </section>
 
@@ -770,25 +816,25 @@
           <!-- Slide 1 -->
           <div class="testimonial-slide active">
             <p class="testimonial-quote">
-              "We have worked with three different consulting firms over the past decade. SR Tax Consulting is the first one that felt like a real partner rather than a vendor. They flagged a tax exposure we had no idea existed and saved us a significant amount."
+              "We ran our business for six years with a local accountant. SR Tax Consulting restructured our compliance, found three years of missed ITC credits, and saved us over 4 lakhs in the first engagement."
             </p>
-            <span class="testimonial-author">— Director, Mid-size Manufacturing Firm, Pune</span>
+            <span class="testimonial-author">— Director, Manufacturing Firm, Kolkata</span>
           </div>
           
           <!-- Slide 2 -->
           <div class="testimonial-slide">
             <p class="testimonial-quote">
-              "As a startup founder with no finance background, I needed someone who could explain things clearly and handle the compliance without me losing sleep. That is exactly what I got."
+              "As a first-time founder with no finance background, I needed a CA who could explain things simply and handle everything from GST to annual filings. Suvendu and the SR Tax team do exactly that."
             </p>
-            <span class="testimonial-author">— Co-Founder, SaaS Company, Bengaluru</span>
+            <span class="testimonial-author">— Co-Founder, EdTech Startup, Salt Lake, Kolkata</span>
           </div>
           
           <!-- Slide 3 -->
           <div class="testimonial-slide">
             <p class="testimonial-quote">
-              "Thorough, responsive, and always ahead of deadlines. I have referred four other business owners to them in the last two years."
+              "Proactive, responsive, and always a step ahead of deadlines. I have referred five business owners to them — every one of them stayed."
             </p>
-            <span class="testimonial-author">— Proprietor, Retail Chain, Hyderabad</span>
+            <span class="testimonial-author">— Proprietor, Retail Chain, Park Street, Kolkata</span>
           </div>
         </div>
         
@@ -966,7 +1012,7 @@
               <p class="team-member-spec">Specialisation: Direct Taxation, Corporate Advisory</p>
             </div>
             <p class="team-member-bio">
-              20 years of practice across Big 4 and independent consulting. S. Raghavan founded the firm after recognising that mid-market businesses were underserved by both large firms and solo practitioners.
+              20 years of practice across Big 4 and independent consulting. S. Raghavan founded the firm in Kolkata after recognising that growing businesses needed a CA partner who understood their industry — not just the tax code.
             </p>
           </div>
         </div>
@@ -1079,9 +1125,9 @@
   <section class="section-padding reveal" id="contact">
     <div class="container">
       <span class="label-caps">Get in Touch</span>
-      <h2 class="section-title">Start with a conversation.</h2>
+      <h2 class="section-title">Let's talk about your requirements.</h2>
       <p class="section-intro">
-        Whether you are an individual looking for tax filing help, a startup that needs its books set up, or an established business exploring audit and advisory services — reach out. The first call is always without obligation.
+        Whether you need ITR filing, GST help, a company registration, or a full ongoing accounting partnership — reach out. The first conversation is always without obligation.
       </p>
       
       <div class="contact-grid">
@@ -1091,8 +1137,8 @@
             <div class="contact-detail-block">
               <span class="contact-detail-label">Office Address</span>
               <span class="contact-detail-value">
-                12, 3rd Floor, Brigade Road<br>
-                Bengaluru, Karnataka — 560025
+                Salt Lake, Sector V<br>
+                Kolkata, West Bengal — 700091
               </span>
             </div>
             
@@ -1100,6 +1146,13 @@
               <span class="contact-detail-label">Phone</span>
               <span class="contact-detail-value">
                 <a href="tel:+919876543210" class="link-underline">+91 98765 43210</a>
+              </span>
+            </div>
+            
+            <div class="contact-detail-block">
+              <span class="contact-detail-label">WhatsApp</span>
+              <span class="contact-detail-value">
+                <a href="https://wa.me/919876543210" target="_blank" class="link-underline">Chat on WhatsApp</a>
               </span>
             </div>
             
@@ -1113,14 +1166,13 @@
             <div class="contact-detail-block">
               <span class="contact-detail-label">Office Hours</span>
               <span class="contact-detail-value">
-                Monday to Saturday, 9:30 AM – 6:30 PM
+                Monday to Saturday, 10:00 AM – 7:00 PM
               </span>
             </div>
           </div>
           
-          <!-- Visual Map Placeholder (Premium architectural outline) -->
+          <!-- Map Placeholder with Google Maps link -->
           <div class="map-placeholder-box">
-            <!-- Subtle architectural line art as background mapping -->
             <svg class="map-placeholder-bg-line" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <line x1="0" y1="20" x2="100" y2="20" stroke="#2C3E6B" stroke-width="0.5"/>
               <line x1="0" y1="50" x2="100" y2="50" stroke="#2C3E6B" stroke-width="0.5"/>
@@ -1130,8 +1182,14 @@
               <circle cx="70" cy="50" r="2" fill="#2C3E6B"/>
             </svg>
             <span class="label-caps" style="margin-bottom: 0.5rem;">Find Us</span>
-            <h4 class="map-placeholder-title">Brigade Road, Bengaluru</h4>
-            <p class="map-placeholder-desc">Central business hub location. Easy access & visitor parking available.</p>
+            <h4 class="map-placeholder-title">Salt Lake, Sector V, Kolkata</h4>
+            <p class="map-placeholder-desc">Central business hub. Easy metro access & visitor parking available.</p>
+            <a href="https://maps.google.com/?q=Salt+Lake+Sector+V+Kolkata" target="_blank" class="map-directions-link">
+              Get Directions
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </a>
           </div>
         </div>
         
@@ -1200,9 +1258,9 @@
         <!-- Identity -->
         <div class="footer-col-identity">
           <h2 class="footer-logo">SR Tax Consulting</h2>
-          <span class="footer-logo-sub">Tax & Financial Advisory</span>
+          <span class="footer-logo-sub">Chartered Accountants — Kolkata</span>
           <p class="footer-desc">
-            Providing counsel that is honest, thorough, and built to last. Practising since 2009.
+            Trusted CA firm in Kolkata. ITR filing, GST returns, company registration, audit, and compliance for individuals and businesses since 2009.
           </p>
           <span class="footer-reg-no">ICAI Firm Reg. No. 123456W</span>
         </div>
@@ -1213,7 +1271,7 @@
           <ul class="footer-links">
             <li><a href="#about" class="footer-link">About the Firm</a></li>
             <li><a href="#services" class="footer-link">Services</a></li>
-            <li><a href="#industries" class="footer-link">Industries</a></li>
+            <li><a href="#compliance-services" class="footer-link">Registrations</a></li>
             <li><a href="#insights" class="footer-link">Insights</a></li>
             <li><a href="#contact" class="footer-link">Contact</a></li>
           </ul>
@@ -1221,12 +1279,12 @@
         
         <!-- Services list -->
         <div>
-          <h3 class="footer-col-title">Services</h3>
+          <h3 class="footer-col-title">Popular Services</h3>
           <ul class="footer-links">
-            <li><a href="#services" class="footer-link">Taxation</a></li>
-            <li><a href="#services" class="footer-link">Audit & Assurance</a></li>
-            <li><a href="#services" class="footer-link">Corporate Compliance</a></li>
-            <li><a href="#services" class="footer-link">Financial Advisory</a></li>
+            <li><a href="#services" class="footer-link">Income Tax Return Filing</a></li>
+            <li><a href="#services" class="footer-link">GST Registration & Returns</a></li>
+            <li><a href="#compliance-services" class="footer-link">Company Registration</a></li>
+            <li><a href="#services" class="footer-link">Tax Audit</a></li>
             <li><a href="#services" class="footer-link">Bookkeeping</a></li>
           </ul>
         </div>
@@ -1243,8 +1301,11 @@
             <a href="tel:+919876543210" class="footer-link">+91 98765 43210</a>
           </div>
           <div class="footer-contact-item">
-            Offices:<br>
-            <span style="color: #8A8A8A;">Bengaluru | Mumbai | Pune</span>
+            Office:<br>
+            <span style="color: #8A8A8A;">Salt Lake, Sector V, Kolkata 700091</span>
+          </div>
+          <div class="footer-contact-item">
+            <a href="https://wa.me/919876543210" target="_blank" class="footer-link">WhatsApp Us</a>
           </div>
         </div>
       </div>

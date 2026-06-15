@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit('QuoteModal', initQuoteModal);
   safeInit('ChatWidget', initChatWidget);
   safeInit('NavigatorTabs', initNavigatorTabs);
+  safeInit('ComplianceToggle', initComplianceToggle);
+  safeInit('WhyUsAccordion', initWhyUsAccordion);
 });
 
 /* ==========================================================================
@@ -181,7 +183,8 @@ function initTestimonials() {
    ========================================================================== */
 function initActiveNavHighlighting() {
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const desktopLinks = document.querySelectorAll('.nav-link');
+  const mobileLinks = document.querySelectorAll('.mobile-menu-link');
   
   if (sections.length === 0) return;
 
@@ -189,7 +192,17 @@ function initActiveNavHighlighting() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
+        
+        // Update desktop links
+        desktopLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          }
+        });
+
+        // Update mobile links
+        mobileLinks.forEach(link => {
           link.classList.remove('active');
           if (link.getAttribute('href') === `#${id}`) {
             link.classList.add('active');
@@ -199,7 +212,7 @@ function initActiveNavHighlighting() {
     });
   }, {
     threshold: 0.3, // Trigger when 30% of section is visible
-    rootMargin: '-80px 0px -40% 0px' // Adjust for header height
+    rootMargin: '-90px 0px -40% 0px' // Adjust for dynamic header height
   });
   
   sections.forEach(sec => highlightObserver.observe(sec));
@@ -602,6 +615,92 @@ function initNavigatorTabs() {
       if (targetPanel) {
         targetPanel.classList.add('active');
         targetPanel.style.display = 'block';
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   Compliance Grid Mobile Toggle (Show More / Show Less)
+   ========================================================================== */
+function initComplianceToggle() {
+  const grid = document.querySelector('.compliance-grid');
+  const toggleBtn = document.querySelector('.compliance-toggle-btn');
+  
+  if (!grid || !toggleBtn) return;
+  
+  const cards = grid.querySelectorAll('.compliance-card');
+  const VISIBLE_COUNT = 6;
+  let isExpanded = false;
+  
+  const updateVisibility = () => {
+    if (window.innerWidth > 767) {
+      // Desktop: show all
+      cards.forEach(card => card.classList.remove('mobile-hidden'));
+      toggleBtn.style.display = 'none';
+      return;
+    }
+    
+    toggleBtn.style.display = 'block';
+    
+    if (isExpanded) {
+      cards.forEach(card => card.classList.remove('mobile-hidden'));
+      toggleBtn.textContent = 'Show Fewer Services \u2191';
+    } else {
+      cards.forEach((card, index) => {
+        if (index >= VISIBLE_COUNT) {
+          card.classList.add('mobile-hidden');
+        } else {
+          card.classList.remove('mobile-hidden');
+        }
+      });
+      toggleBtn.textContent = 'Show All ' + cards.length + ' Services \u2193';
+    }
+  };
+  
+  toggleBtn.addEventListener('click', () => {
+    isExpanded = !isExpanded;
+    updateVisibility();
+    
+    if (!isExpanded) {
+      // Scroll back to section top
+      const section = document.getElementById('compliance-services');
+      if (section) {
+        const headerOffset = 80;
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    }
+  });
+  
+  // Initial setup
+  updateVisibility();
+  
+  // Re-evaluate on resize
+  window.addEventListener('resize', updateVisibility);
+}
+
+/* ==========================================================================
+   Why Us Section Mobile Accordion
+   ========================================================================== */
+function initWhyUsAccordion() {
+  const reasonItems = document.querySelectorAll('.reason-item');
+  
+  if (reasonItems.length === 0) return;
+  
+  reasonItems.forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth >= 768) return;
+      
+      const isOpen = item.classList.contains('open');
+      
+      // Close all
+      reasonItems.forEach(i => i.classList.remove('open'));
+      
+      // Open clicked if it was closed
+      if (!isOpen) {
+        item.classList.add('open');
       }
     });
   });
