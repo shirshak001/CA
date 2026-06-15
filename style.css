@@ -1457,7 +1457,7 @@ textarea.form-input {
 
 /* Page Load Animation classes */
 .load-fade {
-  opacity: 0;
+  opacity: 1;
 }
 
 .load-fade-active {
@@ -1472,14 +1472,12 @@ textarea.form-input {
 
 /* Scroll reveal mechanism */
 .reveal {
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .reveal.revealed {
   opacity: 1;
-  transform: translateY(0);
 }
 
 /* Accessibility: Respect prefers-reduced-motion */
