@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initServicesAccordion();
   initFloatingActions();
+  initQuoteModal();
+  initChatWidget();
 });
 
 /* ==========================================================================
@@ -358,5 +360,202 @@ function initFloatingActions() {
       top: 0,
       behavior: 'smooth'
     });
+  });
+}
+
+/* ==========================================================================
+   Get a Quote Modal Logic (New)
+   ========================================================================== */
+function initQuoteModal() {
+  const modal = document.getElementById('quote-modal');
+  const openBtns = document.querySelectorAll('.open-quote-btn');
+  const closeBtn = document.getElementById('modal-close-btn');
+  const form = document.getElementById('quote-form');
+  const successMsg = document.getElementById('modal-success-message');
+  const closeSuccessBtn = document.getElementById('close-success-modal-btn');
+  
+  if (!modal) return;
+  
+  const openModal = () => {
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  
+  const closeModal = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    
+    // Reset state after transition completes
+    setTimeout(() => {
+      form.style.display = 'block';
+      successMsg.style.display = 'none';
+      form.reset();
+    }, 400);
+  };
+  
+  openBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal();
+  }));
+  
+  closeBtn.addEventListener('click', closeModal);
+  closeSuccessBtn.addEventListener('click', closeModal);
+  
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+  
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    
+    // Simulate server request
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Processing...';
+    submitBtn.disabled = true;
+    
+    setTimeout(() => {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+    }, 1000);
+  });
+}
+
+/* ==========================================================================
+   Chat Widget Logic (New)
+   ========================================================================== */
+function initChatWidget() {
+  const toggleBtn = document.getElementById('chat-toggle-btn');
+  const chatBox = document.getElementById('chat-box');
+  const closeBtn = document.getElementById('chat-close-btn');
+  const badge = document.getElementById('chat-badge');
+  const messagesContainer = document.getElementById('chat-messages');
+  const inputForm = document.getElementById('chat-input-form');
+  const msgInput = document.getElementById('chat-message-input');
+  const repliesContainer = document.getElementById('chat-quick-replies');
+  
+  if (!toggleBtn || !chatBox) return;
+  
+  let isChatStarted = false;
+  
+  const toggleChat = () => {
+    const isOpen = chatBox.classList.contains('open');
+    if (isOpen) {
+      chatBox.classList.remove('open');
+      chatBox.setAttribute('aria-hidden', 'true');
+    } else {
+      chatBox.classList.add('open');
+      chatBox.setAttribute('aria-hidden', 'false');
+      badge.classList.add('hidden'); // Clear badge on first open
+      
+      if (!isChatStarted) {
+        startChat();
+      }
+    }
+  };
+  
+  toggleBtn.addEventListener('click', toggleChat);
+  closeBtn.addEventListener('click', toggleChat);
+  
+  const appendMessage = (sender, text) => {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('chat-msg', sender === 'bot' ? 'chat-msg-bot' : 'chat-msg-user');
+    msgDiv.textContent = text;
+    messagesContainer.appendChild(msgDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  };
+  
+  const showTypingIndicator = () => {
+    const indicatorDiv = document.createElement('div');
+    indicatorDiv.classList.add('chat-msg', 'chat-msg-bot', 'chat-typing-indicator');
+    indicatorDiv.innerHTML = '<span style="display:inline-block;animation:bounce 1.4s infinite ease-in-out;width:6px;height:6px;background:#8A8A8A;border-radius:50%;margin:0 2px;"></span><span style="display:inline-block;animation:bounce 1.4s infinite ease-in-out 0.2s;width:6px;height:6px;background:#8A8A8A;border-radius:50%;margin:0 2px;"></span><span style="display:inline-block;animation:bounce 1.4s infinite ease-in-out 0.4s;width:6px;height:6px;background:#8A8A8A;border-radius:50%;margin:0 2px;"></span>';
+    messagesContainer.appendChild(indicatorDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    // Add bounce animation style inline if not in css
+    if (!document.getElementById('bounce-animation-style')) {
+      const style = document.createElement('style');
+      style.id = 'bounce-animation-style';
+      style.textContent = '@keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }';
+      document.head.appendChild(style);
+    }
+    
+    return indicatorDiv;
+  };
+  
+  const botReply = (text, delay = 1000) => {
+    const indicator = showTypingIndicator();
+    setTimeout(() => {
+      indicator.remove();
+      appendMessage('bot', text);
+    }, delay);
+  };
+  
+  const quickReplies = [
+    { label: 'File ITR 📄', text: 'I want to file my Income Tax Return (ITR).' },
+    { label: 'GST Help 💼', text: 'I need assistance with GST Registration or Return Filing.' },
+    { label: 'Company Setup 🏢', text: 'I want to register a new Private Limited Company or LLP.' },
+    { label: 'Get a Quote 💰', text: 'I want to request a custom pricing quote.' }
+  ];
+  
+  const renderQuickReplies = () => {
+    repliesContainer.innerHTML = '';
+    quickReplies.forEach(reply => {
+      const btn = document.createElement('button');
+      btn.classList.add('quick-reply-btn');
+      btn.textContent = reply.label;
+      btn.addEventListener('click', () => {
+        handleUserMessage(reply.text);
+      });
+      repliesContainer.appendChild(btn);
+    });
+  };
+  
+  const handleUserMessage = (text) => {
+    if (!text.trim()) return;
+    
+    // Append user message
+    appendMessage('user', text);
+    
+    // Determine response
+    const lowerText = text.toLowerCase();
+    let reply = "Thanks for your message! Our tax consultants will get back to you shortly. You can also request an instant pricing estimate by clicking 'Get a Quote' at the bottom.";
+    
+    if (lowerText.includes('itr') || lowerText.includes('income tax')) {
+      reply = "For Income Tax Return filing, we handle salaried individuals, professionals, and corporate returns. We will need your Form 16, bank statements, and investment details. Would you like to schedule a callback?";
+    } else if (lowerText.includes('gst')) {
+      reply = "We offer complete GST support: registrations, monthly/quarterly returns, and ITC reconciliations. Our packages start from ₹1,500/month. Let us know if you want our team to call you.";
+    } else if (lowerText.includes('company') || lowerText.includes('pvt ltd') || lowerText.includes('register') || lowerText.includes('llp')) {
+      reply = "We specialize in registering Private Limited Companies, LLPs, One Person Companies, and MSMEs. Incorporation typically takes 5-7 working days. Would you like us to share the document checklist?";
+    } else if (lowerText.includes('quote') || lowerText.includes('pricing') || lowerText.includes('cost') || lowerText.includes('fee')) {
+      reply = "Our pricing is transparent and fixed. You can request a custom proposal directly. Alternatively, leave your phone number here and a partner will call you in 1 hour.";
+    } else if (lowerText.includes('hello') || lowerText.includes('hi') || lowerText.includes('hey')) {
+      reply = "Hello! I am the virtual assistant for SR Tax Consulting. How can I help you with your filing or registration requirements today?";
+    }
+    
+    botReply(reply);
+  };
+  
+  const startChat = () => {
+    isChatStarted = true;
+    appendMessage('bot', "Hello! Thank you for visiting SR Tax Consulting. How can we help you with your tax filing, business registration, or compliance today?");
+    renderQuickReplies();
+  };
+  
+  inputForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = msgInput.value;
+    msgInput.value = '';
+    handleUserMessage(text);
   });
 }
